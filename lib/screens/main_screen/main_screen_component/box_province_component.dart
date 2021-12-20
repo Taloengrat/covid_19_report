@@ -16,7 +16,7 @@ class BoxProvinceComponent extends StatelessWidget {
     final provinceInstance = Provider.of<CovidProvider>(context).findItem(item);
 
     return Container(
-      child: Text(),
+      child: Text(item),
     );
   }
 }
