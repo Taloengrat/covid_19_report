@@ -1,6 +1,7 @@
+import 'package:covid_19_dashboard/interfaces/icovid_model.dart';
 import 'package:covid_19_dashboard/models/covid_all_model.dart';
 import 'package:covid_19_dashboard/models/covid_model.dart';
-import 'package:covid_19_dashboard/screens/main_screen/main_screen_component/box_province_component.dart';
+import 'package:covid_19_dashboard/screens/main_screen/main_screen_component/components/box_province_component.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -8,7 +9,7 @@ import 'box_component.dart';
 
 class ContentComponent extends StatelessWidget {
   final bool? isLoaded;
-  final CovidAllModel? item;
+  final ICovid19? item;
   final bool isProvince;
   final String? provinceItem;
   const ContentComponent({
@@ -22,7 +23,7 @@ class ContentComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: isProvince
+      child: isProvince && provinceItem != null
           ? BoxProvinceComponent(item: provinceItem!)
           : isLoaded!
               ? Padding(
@@ -38,8 +39,7 @@ class ContentComponent extends StatelessWidget {
                             FittedBox(
                               fit: BoxFit.cover,
                               child: Text(
-                                '''วันที่ ${item!.updateDate!.split(' ')[0].replaceAllMapped('-', (match) => '/')}
-                             เวลา ${item!.updateDate!.split(' ')[1]}''',
+                                item!.getDate(),
                                 textAlign: TextAlign.end,
                               ),
                             )
@@ -57,7 +57,7 @@ class ContentComponent extends StatelessWidget {
                             BoxComponent(
                               color: Colors.orange,
                               title: 'รายใหม่',
-                              detail: item!.newCase.toString(),
+                              detail: item!.getNewCase().toString(),
                             ),
                             const SizedBox(
                               width: 8,
@@ -65,7 +65,7 @@ class ContentComponent extends StatelessWidget {
                             BoxComponent(
                               color: Colors.brown,
                               title: 'หายฟื้น',
-                              detail: item!.newRecovered.toString(),
+                              detail: item!.getRecovered().toString(),
                             ),
                           ],
                         ),
@@ -81,7 +81,7 @@ class ContentComponent extends StatelessWidget {
                             BoxComponent(
                               color: Colors.red,
                               title: 'เสียชีวิต',
-                              detail: item!.newDeath.toString(),
+                              detail: item!.getDeath().toString(),
                             ),
                             const SizedBox(
                               width: 8,
@@ -90,8 +90,7 @@ class ContentComponent extends StatelessWidget {
                               color: Colors.white,
                               isStrengh: true,
                               title: 'รวม',
-                              detail:
-                                  'สะสม: ${item!.totalCase}\nหายฟื้น: ${item!.totalRecovered}\nเสียชีวิต: ${item!.totalDeath}',
+                              detail: item!.getSummary(),
                             ),
                           ],
                         ),
@@ -117,17 +116,17 @@ class ContentComponent extends StatelessWidget {
                                           dataSource: [
                                             _PieData(
                                               'รายใหม่',
-                                              item!.newCase!,
+                                              item!.getNewCase(),
                                               Colors.orange,
                                             ),
                                             _PieData(
                                               'หายฟื้น',
-                                              item!.newRecovered!,
+                                              item!.getRecovered()!,
                                               Colors.brown,
                                             ),
                                             _PieData(
                                               'เสียชีวิตเพิ่ม',
-                                              item!.newDeath!,
+                                              item!.getDeath(),
                                               Colors.red,
                                             ),
                                           ],

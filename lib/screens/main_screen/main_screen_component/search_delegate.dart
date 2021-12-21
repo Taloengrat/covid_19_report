@@ -1,8 +1,8 @@
-import 'package:covid_19_dashboard/screens/main_screen/main_screen_component/box_component.dart';
-import 'package:covid_19_dashboard/screens/main_screen/main_screen_component/box_province_component.dart';
-import 'package:covid_19_dashboard/screens/main_screen/main_screen_component/content_component.dart';
-import 'package:covid_19_dashboard/screens/province_screen/province_screen.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+
+import 'components/content_component.dart';
 
 class DataSearch extends SearchDelegate {
   final List<String> dataSet;
@@ -35,7 +35,8 @@ class DataSearch extends SearchDelegate {
     // TODO: implement buildLeading
     return IconButton(
       onPressed: () {
-        close(context, null);
+        log('onPressClose');
+        close(context, query);
       },
       icon: AnimatedIcon(
           icon: AnimatedIcons.menu_arrow, progress: transitionAnimation),

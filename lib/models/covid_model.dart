@@ -1,4 +1,6 @@
-class CovidModel {
+import 'package:covid_19_dashboard/interfaces/icovid_model.dart';
+
+class CovidModel implements ICovid19 {
   String province;
   String date;
   int newCase;
@@ -32,5 +34,34 @@ class CovidModel {
         newDeath: json['new_death'],
         totalDeath: json['total_death'],
         updateDate: json['update_date']);
+  }
+
+  @override
+  int getDeath() {
+    return newDeath;
+  }
+
+  @override
+  int getNewCase() {
+    return newCase;
+    // TODO: implement getNewCase
+  }
+
+  @override
+  int getRecovered() {
+    return 0;
+    // TODO: implement getRecovered
+  }
+
+  @override
+  String getSummary() {
+    return 'สะสม: $totalCase\nเสียชีวิต: $totalDeath';
+  }
+
+  @override
+  String getDate() {
+    return '''วันที่ ${updateDate.split(' ')[0].replaceAllMapped('-', (match) => '/')}
+                             เวลา ${updateDate.split(' ')[1]}''';
+    // TODO: implement getDate
   }
 }

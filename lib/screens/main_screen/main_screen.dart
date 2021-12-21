@@ -1,6 +1,6 @@
 import 'package:covid_19_dashboard/constance.dart';
 import 'package:covid_19_dashboard/provider/covid_provider.dart';
-import 'package:covid_19_dashboard/screens/main_screen/main_screen_component/content_component.dart';
+import 'package:covid_19_dashboard/screens/main_screen/main_screen_component/components/content_component.dart';
 import 'package:covid_19_dashboard/screens/main_screen/main_screen_component/search_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -21,7 +21,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     SchedulerBinding.instance?.addPostFrameCallback((_) {

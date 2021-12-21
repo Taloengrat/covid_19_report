@@ -1,5 +1,5 @@
-import 'package:covid_19_dashboard/models/covid_model.dart';
 import 'package:covid_19_dashboard/provider/covid_provider.dart';
+import 'package:covid_19_dashboard/screens/main_screen/main_screen_component/components/content_component.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,8 +15,12 @@ class BoxProvinceComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final provinceInstance = Provider.of<CovidProvider>(context).findItem(item);
 
-    return Container(
-      child: Text(item),
-    );
+    return provinceInstance != null
+        ? ContentComponent(
+            isProvince: false,
+            isLoaded: true,
+            item: provinceInstance,
+          )
+        : Container();
   }
 }

@@ -1,6 +1,6 @@
-import 'dart:convert';
+import 'package:covid_19_dashboard/interfaces/icovid_model.dart';
 
-class CovidAllModel {
+class CovidAllModel implements ICovid19 {
   String? txnDate;
   int? newCase;
   int? totalCase;
@@ -38,5 +38,41 @@ class CovidAllModel {
       totalRecovered: json['total_recovered'],
       updateDate: json['update_date'],
     );
+  }
+
+  @override
+  int getDeath() {
+    return newDeath!;
+    // TODO: implement getDeath
+    throw UnimplementedError();
+  }
+
+  @override
+  int getNewCase() {
+    return newCase!;
+    // TODO: implement getNewCase
+    throw UnimplementedError();
+  }
+
+  @override
+  int getRecovered() {
+    return newRecovered!;
+    // TODO: implement getRecovered
+    throw UnimplementedError();
+  }
+
+  @override
+  String getSummary() {
+    return 'สะสม: $totalCase\nหายฟื้น: $totalRecovered\nเสียชีวิต: $totalDeath';
+    // TODO: implement getSummary
+    throw UnimplementedError();
+  }
+
+  @override
+  String getDate() {
+    return '''วันที่ ${updateDate!.split(' ')[0].replaceAllMapped('-', (match) => '/')}
+                             เวลา ${updateDate!.split(' ')[1]}''';
+    // TODO: implement getDate
+    throw UnimplementedError();
   }
 }

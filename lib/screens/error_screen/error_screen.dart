@@ -7,11 +7,9 @@ class ErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        child: Text(
-          'ERROR PAGE',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 48),
-        ),
+      child: const Text(
+        'ERROR PAGE',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 48),
       ),
     );
   }

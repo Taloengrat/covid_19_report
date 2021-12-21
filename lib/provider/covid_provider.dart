@@ -19,8 +19,8 @@ class CovidProvider with ChangeNotifier {
 
   CovidAllModel get allCountry => _allCountry;
 
-  CovidModel findItem(String province) =>
-      _items.firstWhere((element) => element.province == province);
+  CovidModel findItem(String province) => _items
+      .firstWhere((element) => element.province == province, orElse: null);
 
   addCountry(CovidAllModel model) {
     _allCountry = model;
